@@ -1,16 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -euo pipefail
 
 DIR_HOME=$(pwd)
 DIR_CC_REACT="$DIR_HOME/packages/cc-react"
 DIR_PLAYGROUND="$DIR_HOME/playground"
 
+source "${DIR_HOME}/scripts/log.sh"
+
 clear
 cd "$DIR_CC_REACT"
-echo -e "\033[102;30mCleaning all 'dist'...\e[0m"
+info "Cleaning all 'dist'..."
 rm -rf "$DIR_CC_REACT/dist"
-echo -e "\033[102;30mCleaning all 'node_modules'...\e[0m"
+info "Cleaning all 'node_modules'..."
 rm -rf "$DIR_CC_REACT/node_modules"
-echo -e "\033[102;30mRe-installing packages...\e[0m"
+info "Re-installing packages..."
 npm install
 npx tsc
 npm publish --access=public
