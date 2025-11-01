@@ -9,14 +9,30 @@ To install:
 ```
 npm install @ccleanershot/cc-react
 ```
+### Vite Setup
+If you’re using Vite, start with the React + TypeScript template, then make two small changes:
 
-If you use a `tsconfig.json` file, make sure you have the following set:
+1. In `tsconfig.app.json`, updated the JSX option:
+```
+// original
+"jsx": "react-jsx" // original
+// updated
+"jsx": "react" // updated
+```
+2. In `vite.config.ts`, remove the `react()` plugin:
+```
+import { defineConfig } from 'vite'
 
+export default defineConfig({
+  plugins: [],
+})
+```
+Otherwise, if you’re not using Vite, just make sure your `tsconfig.json` includes:
 ```
 {
-    "compilerOptions": {
-        "jsx": "react" // add this line
-    }
+  "compilerOptions": {
+    "jsx": "react"
+  }
 }
 ```
 
@@ -49,7 +65,7 @@ const App = ({ environment }: Props) => {
     );
 };
 
-render(<App environment="dev" />, document.getElementById("myapp")!);
+render(<App environment="dev" />, document.getElementById("root")!);
 ```
 
 Feel free to test beyond the example, and report bugs as you see fit. The goal isn't to clone all of modern-day React, but if the main hooks don't work, that's a problem for the package :).
